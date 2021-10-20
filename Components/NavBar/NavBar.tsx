@@ -1,10 +1,12 @@
-import { NextComponentType } from 'next'
+import React from "react"
 import { useRouter } from 'next/router'
 import Link from "next/link"
 import Image from "next/image"
 import { Menu } from 'antd'
+import { SearchOutlined } from '@ant-design/icons'
 import { Links } from './links.config'
 import styles from './NavBar.module.scss'
+import { NavBarUser } from './NavBar.user'
 
 interface ILink {
   path: string
@@ -12,8 +14,10 @@ interface ILink {
   route: string
 }
 
-export const NavBar: NextComponentType = () => {
+export const NavBar: React.FC = () => {
   const router = useRouter()
+  const isAuth = true
+
   return <>
     <div className={ styles.logo }>
       <Link href='/' >
@@ -29,8 +33,10 @@ export const NavBar: NextComponentType = () => {
           return <Menu.Item key={key} onClick={() => router.push(item.path)}>{ item.title }</Menu.Item>
         })}
       </Menu>
-      <div style={{ width: 100, color: '#fff' }}>
-        123213
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: 80 }}>
+        <SearchOutlined style={{ color: 'white', fontSize: 16 }} />
+        {/*<Input.Search placeholder="input search text" onSearch={(e) => console.log(e)} style={{ width: 200 }} />*/}
+        <NavBarUser isAuth={ isAuth } />
       </div>
     </div>
   </>
