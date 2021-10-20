@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
-import { Layout } from 'antd'
+import { AuthorizationLayout } from "../layouts"
 
 const Login: NextPage = () => {
-  return <Layout>
-
-  </Layout>
+  return <AuthorizationLayout title='Вхід' text='У вас ще нема акаунта?' path='/registration' btn='Створити' >
+    131321
+  </AuthorizationLayout>
 }
 
 export default Login

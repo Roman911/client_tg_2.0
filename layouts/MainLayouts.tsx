@@ -1,7 +1,7 @@
 import { NextComponentType } from 'next'
 import { Breadcrumb, Layout } from 'antd'
 import { NavBar } from "../Components"
-import styles from '../styles/MainLayouts.module.scss'
+import styles from './Layout.module.scss'
 
 export const MainLayouts: NextComponentType = ({ children }) => {
   return <Layout>
