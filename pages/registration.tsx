@@ -1,8 +1,14 @@
 import type { NextPage } from 'next'
+//import { useForm, FormProvider } from 'react-hook-form'
 import { AuthorizationLayout } from "../layouts"
 
 const Registration: NextPage = () => {
-  return <AuthorizationLayout title='Реєстрація' text='Вже є акаунт?' path='/login' btn='Авторизуватися' >
+  //const methods = useForm({ resolver: yupResolver(schema) })
+  return <AuthorizationLayout title='Реєстрація' text='У вас вже є акаунт?' path='/login' btn='Увійти' >
+    {/*<FormProvider { ...methods } >*/}
+
+    {/*</FormProvider>*/}
+
     131321
   </AuthorizationLayout>
 }
