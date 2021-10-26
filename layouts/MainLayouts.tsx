@@ -1,9 +1,12 @@
 import { NextComponentType } from 'next'
 import { Breadcrumb, Layout } from 'antd'
-import { NavBar } from "../Components"
+import { useTypedSelector } from "../hooks/useTypedSelector"
+import { NavBar, Progress } from "../Components"
 import styles from './Layout.module.scss'
 
 export const MainLayouts: NextComponentType = ({ children }) => {
+  const { isLoading } = useTypedSelector(state => state.loadingPage)
+
   return <Layout>
     <Layout.Header className={ styles.header }>
       <NavBar />
@@ -26,5 +29,6 @@ export const MainLayouts: NextComponentType = ({ children }) => {
     <Layout.Footer>
       Footer
     </Layout.Footer>
+    { isLoading && <Progress /> }
   </Layout>
 }

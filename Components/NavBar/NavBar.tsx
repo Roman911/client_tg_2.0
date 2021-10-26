@@ -7,6 +7,7 @@ import { SearchOutlined } from '@ant-design/icons'
 import { Links } from './links.config'
 import styles from './NavBar.module.scss'
 import { NavBarUser } from './NavBar.user'
+import { useActions } from "../../hooks/useActions"
 
 interface ILink {
   path: string
@@ -16,21 +17,24 @@ interface ILink {
 
 export const NavBar: React.FC = () => {
   const router = useRouter()
-  const isAuth = true
+  const { showLoading } = useActions()
+  const isAuth = false
 
   return <>
     <div className={ styles.logo }>
-      <Link href='/' >
-        <a>
+      { router.asPath !== '/' ?
+          <Link href='/' >
+            <a onClick={showLoading}>
+              <Image src="/logo.png" layout="fixed" width={90} height={40} alt="Travel guide logo"/>
+            </a>
+          </Link> :
           <Image src="/logo.png" layout="fixed" width={90} height={40} alt="Travel guide logo"/>
-        </a>
-      </Link>
+      }
     </div>
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']} style={{ width: '100%', marginLeft: 20 }}>
-        {Links.map((item: ILink, index: number) => {
-          const key = index + 1
-          return <Menu.Item key={key} onClick={() => router.push(item.path)}>{ item.title }</Menu.Item>
+      <Menu onClick={showLoading} theme="dark" mode="horizontal" selectedKeys={[router.asPath]} defaultSelectedKeys={['/']} style={{ width: '100%', marginLeft: 20 }}>
+        {Links.map((item: ILink) => {
+          return <Menu.Item key={ item.path } onClick={() => router.push(item.path)}>{ item.title }</Menu.Item>
         })}
       </Menu>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: 80 }}>

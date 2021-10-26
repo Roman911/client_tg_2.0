@@ -1,14 +1,14 @@
 import type { NextPage } from 'next'
+import React from "react"
 import { MainLayouts } from "../layouts"
 import { UseHideLoadingPage } from "../hooks/useHideLoadingPage"
 
-const Home: NextPage = () => {
+const Maps: NextPage = () => {
   UseHideLoadingPage()
-  return <div>
-    <MainLayouts >
-      Index
-    </MainLayouts>
-  </div>
+
+  return <MainLayouts>
+    <h1>Maps</h1>
+  </MainLayouts>
 }
 
-export default Home
+export default Maps
