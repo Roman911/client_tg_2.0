@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
-import { useForm } from 'react-hook-form'
+import React from "react"
+import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Form, Input, Button, Checkbox } from 'antd'
@@ -12,67 +13,69 @@ const schema = yup.object().shape({
   password: yup.string().required()
 })
 
+const defaultValues = {
+  email: '',
+  password: '',
+  remember: true
+}
+
 const Login: NextPage = () => {
   UseHideLoadingPage()
+  const methods = useForm({ defaultValues, resolver: yupResolver(schema) })
+  const { errors } = methods.formState
 
-  const methods = useForm({ resolver: yupResolver(schema) })
-
-  const onSubmit = (values) => {
-    console.log('vfdvfd',values)
-  }
+  const onSubmit = data => { console.log(data) }
 
   return <AuthorizationLayout title='Вхід' text='У вас ще нема акаунта?' path='/registration' btn='Створити' >
-    <Form
-      onSubmit={ methods.handleSubmit(onSubmit) }
-    >
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your username!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
+    <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <br/>
+      <Controller
+        name='email'
+        control={ methods.control }
+        render={
+        ({ field }) => <Form.Item
+          label="email"
+          name="email"
+          validateStatus={ errors.email && "error" }
+          help={ errors.email?.message }
+          rules={[
+            {
+              required: true
+            }
+          ]}
+        >
+          <Input { ...field } />
+        </Form.Item>
+      } />
+      <Controller
+        name='password'
+        control={ methods.control }
+        render={
+          ({ field }) => <Form.Item
+            label="Пароль"
+            name="password"
+            rules={[
+              {
+                required: true
+              }
+            ]}
+          >
+            <Input.Password { ...field } />
+          </Form.Item>
+        } />
+      <Controller
+        control={ methods.control }
         name="remember"
-        valuePropName="checked"
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
+        render={
+        ({ field }) => <div>
+          <Checkbox defaultChecked={true} { ...field }>Запам'ятати мене</Checkbox>
+        </div>
+      } />
 
-      <Form.Item
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+      <Button block type="primary" htmlType="submit">
+        Submit
+      </Button>
+    </form>
   </AuthorizationLayout>
 }
 
