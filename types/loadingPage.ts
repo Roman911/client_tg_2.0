@@ -3,8 +3,8 @@ export interface LoadingPageState {
 }
 
 export enum LoadingPageActionTypes {
-  SHOW = 'LOADING_PAGE:SHOW_LOADING',
-  HIDE = 'LOADING_PAGE:HIDE_LOADING'
+  SHOW = 'LOADING_PAGE:SHOW',
+  HIDE = 'LOADING_PAGE:HIDE'
 }
 
 interface ShowLoadingAction {

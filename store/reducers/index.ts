@@ -2,10 +2,12 @@ import { combineReducers } from "redux"
 import { HYDRATE } from 'next-redux-wrapper'
 import { getBackReducer } from './getBack'
 import { loadingPageReducer } from "./loadingPage"
+import { notificationReducer } from './notification'
 
 const rootReducer = combineReducers({
   loadingPage: loadingPageReducer,
-  getBack: getBackReducer
+  getBack: getBackReducer,
+  notification: notificationReducer
 })
 
 // create your reducer

@@ -1,0 +1,23 @@
+.header {
+  background: #001529;
+  z-index: 2;
+  &__menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .navBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__logo {
+      width: 90px;
+      margin-right: 30px;
+      filter: invert(100%);
+      cursor: pointer;
+    }
+    &__link {
+      margin-top: 10px;
+    }
+  }
+}
