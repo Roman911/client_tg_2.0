@@ -3,7 +3,6 @@ import React from "react"
 import { Typography } from '@mui/material'
 import { MainLayouts } from "../../layouts"
 
-
 const PostActivate: NextPage = () => {
   return <MainLayouts>
     <Typography variant="h2" gutterBottom component="div">Реєстрація</Typography>

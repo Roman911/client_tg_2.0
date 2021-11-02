@@ -41,14 +41,13 @@ const Registration: NextPage = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = data => {
     const { email, name, password } = data
-    //registration()
+    registration({
+      variables: { input: { name, email, password }}}
+    )
   }
 
   if (error) showNotification(error.message)
-  if (data) {
-    router.push('/activate')
-    console.log(data)
-  }
+  if (data) router.push('/activate')
 
   return <AuthorizationLayout title='Новий акаунт' text='У вас вже є обліковий запис?' path='/login' btn='Увійти' >
     <form style={{ textAlign: 'center', marginBottom: 10 }} onSubmit={handleSubmit(onSubmit)}>

@@ -1,10 +1,10 @@
-import { NextComponentType } from 'next'
+import React from 'react'
 import { useTypedSelector } from "../hooks/useTypedSelector"
-import {Header, Progress} from "../Components"
+import { Header, Progress } from "../Components"
 //import styles from './Layout.module.scss'
 import { Container, Box } from '@mui/material'
 
-export const MainLayouts: NextComponentType = ({ children }) => {
+export const MainLayouts: React.FC = ({ children }) => {
   const { isLoading } = useTypedSelector(state => state.loadingPage)
 
   return <Box>

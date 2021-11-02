@@ -33,7 +33,9 @@ const Login: NextPage = () => {
   const onSubmit: SubmitHandler<IFormInput> = data => {
     const { email, password } = data
     userData({
-      variables: { input: { email, password } }
+      variables: {
+        input: { email, password }
+      }
     })
   }
 
