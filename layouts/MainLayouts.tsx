@@ -1,19 +1,18 @@
 import React from 'react'
-import { useTypedSelector } from "../hooks/useTypedSelector"
-import { Header, Progress } from "../Components"
+import { Header } from "../Components"
 //import styles from './Layout.module.scss'
 import { Container, Box } from '@mui/material'
+import { WrapperLayouts } from "./WrapperLayouts"
 
 export const MainLayouts: React.FC = ({ children }) => {
-  const { isLoading } = useTypedSelector(state => state.loadingPage)
-
-  return <Box>
-    <Header />
-    <Container style={{ marginTop: 84 }} maxWidth="xl">
-      { children }
-    </Container>
-    { isLoading && <Progress /> }
-  </Box>
+  return <WrapperLayouts >
+    <Box>
+      <Header />
+      <Container style={{ marginTop: 84 }} maxWidth="xl">
+        { children }
+      </Container>
+    </Box>
+  </WrapperLayouts>
 
   // return <Layout>
   //   <Layout.Header className={ styles.header }>

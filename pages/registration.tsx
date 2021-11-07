@@ -4,13 +4,14 @@ import { useRouter } from 'next/router'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { Controller } from "react-hook-form"
 import { useMutation } from "@apollo/react-hooks"
-import { Button, TextField, Typography } from "@mui/material"
+import { TextField, Typography } from "@mui/material"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useActions } from "../hooks/useActions"
 import { AuthorizationLayout } from "../layouts"
 import { errors } from "../config/errorText"
 import { REGISTRATION } from "../apollo/mutations"
+import {MyButtonSubmit} from "../Components/Button/Button";
 
 const schema = yup.object().shape({
   email: yup.string().required(errors.required).email(errors.email),
@@ -51,7 +52,6 @@ const Registration: NextPage = () => {
 
   return <AuthorizationLayout title='Новий акаунт' text='У вас вже є обліковий запис?' path='/login' btn='Увійти' >
     <form style={{ textAlign: 'center', marginBottom: 10 }} onSubmit={handleSubmit(onSubmit)}>
-      <br/>
       <Controller
         name="name"
         control={control}
@@ -124,7 +124,7 @@ const Registration: NextPage = () => {
       <br/>
       <br/>
       <div style={{ textAlign: 'end' }}>
-        <Button variant="contained" type="submit" disabled={ loading }>Створити</Button>
+        <MyButtonSubmit btn='Створити' disabled={ loading } />
       </div>
     </form>
     <br/>

@@ -4,11 +4,13 @@ import { useLazyQuery } from '@apollo/react-hooks'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { TextField, Button } from '@mui/material'
+import { TextField } from '@mui/material'
 import { AuthorizationLayout } from "../layouts"
 import { errors } from "../config/errorText"
 import { LOGIN } from '../apollo/queries'
 import { useActions } from '../hooks/useActions'
+import Redirect from "../hooks/useRedirect"
+import { MyButtonSubmit } from "../Components/Button/Button"
 
 const schema = yup.object().shape({
   email: yup.string().required(errors.required).email(errors.email),
@@ -26,27 +28,28 @@ const defaultValues = {
 }
 
 const Login: NextPage = () => {
-  const { showNotification } = useActions()
+  const { showNotification, setData, showLoading } = useActions()
   const [ userData, { loading, data, error } ] = useLazyQuery( LOGIN )
   const { control, handleSubmit, formState: { errors } } = useForm<IFormInput>({ defaultValues, resolver: yupResolver(schema) })
 
   const onSubmit: SubmitHandler<IFormInput> = data => {
     const { email, password } = data
     userData({
-      variables: {
-        input: { email, password }
-      }
+      variables: { input: { email, password }}
     })
   }
 
   if (error) showNotification(error.message)
   if (data) {
-    console.log(data)
+    setData(data.login)
+    localStorage.setItem('userData', JSON.stringify({ ...data.login }))
+    showNotification('Ви успішно увійшли!')
+    showLoading()
+    return <Redirect />
   }
 
   return <AuthorizationLayout title='Вхід' text='У вас ще нема акаунта?' path='/registration' btn='Створити' >
     <form style={{ textAlign: 'center', marginBottom: 10 }} onSubmit={handleSubmit(onSubmit)}>
-      <br/>
       <Controller
         name="email"
         control={control}
@@ -84,7 +87,7 @@ const Login: NextPage = () => {
       <br/>
       <br/>
       <div style={{ textAlign: 'end' }}>
-        <Button variant="contained" type="submit" disabled={ loading }>Увійти</Button>
+        <MyButtonSubmit btn='Увійти' disabled={ loading } />
       </div>
     </form>
   </AuthorizationLayout>

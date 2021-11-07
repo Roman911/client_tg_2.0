@@ -1,10 +1,11 @@
 interface IUser {
   name: string
   email: string
+  avatar?: string
 }
 
 export interface UserState {
-  user: IUser | null,
+  userData: IUser | null,
   refreshToken: string
 }
 
