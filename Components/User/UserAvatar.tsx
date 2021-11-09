@@ -1,6 +1,6 @@
 import React from "react"
 import Link from 'next/link'
-import {Avatar, Drawer, Typography} from "@mui/material"
+import { Avatar, Drawer, Typography } from "@mui/material"
 import styles from './Avatar.module.scss'
 import { MyButtonLink } from '../'
 import { useActions } from "../../hooks/useActions"

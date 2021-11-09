@@ -1,8 +1,7 @@
 import React from "react"
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { Controller } from "react-hook-form"
+import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 import { useMutation } from "@apollo/react-hooks"
 import { TextField, Typography } from "@mui/material"
 import * as yup from "yup"
@@ -11,7 +10,7 @@ import { useActions } from "../hooks/useActions"
 import { AuthorizationLayout } from "../layouts"
 import { errors } from "../config/errorText"
 import { REGISTRATION } from "../apollo/mutations"
-import {MyButtonSubmit} from "../Components/Button/Button";
+import { MyButtonSubmit } from "../Components/Button/Button"
 
 const schema = yup.object().shape({
   email: yup.string().required(errors.required).email(errors.email),

@@ -10,7 +10,7 @@ import { useTypedSelector } from "../hooks/useTypedSelector"
 import styles from './Layout.module.scss'
 import { UseHideLoadingPage } from "../hooks/useHideLoadingPage"
 import { WrapperLayouts } from "./WrapperLayouts"
-import Redirect from "../hooks/useRedirect";
+import Redirect from "../hooks/useRedirect"
 
 interface IAuthorizationLayout {
   title: string

@@ -1,0 +1,14 @@
+.card {
+  &__content {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+  &__actions {
+    padding: 0 8px;
+    .typography {
+      margin-bottom: 0;
+      margin-left: 3px;
+      line-height: 0;
+    }
+  }
+}

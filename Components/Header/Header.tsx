@@ -6,7 +6,7 @@ import { AppBar, Box, Toolbar, Tabs, Tab, IconButton } from "@mui/material"
 import { AccountCircle } from '@mui/icons-material'
 import styles from "./Header.module.scss"
 import { useActions } from "../../hooks/useActions"
-import { Links } from "../NavBar/links.config"
+import { Links } from "./links.config"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
 import { UserAvatar } from '../'
 
