@@ -11,7 +11,7 @@ const Maps: NextPage = () => {
 
   const [ viewport, setViewport ] = React.useState({
     width: '100%',
-    height: '100%',
+    height: 'calc(100vh - 200px)',
     latitude: 37.7577,
     longitude: -122.4376,
     zoom: 10
